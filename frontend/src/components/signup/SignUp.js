@@ -4,16 +4,7 @@ import './SignUp.css';
 const SignUp = () => {
   return (
     <>
-        <div className="signup">
-
-        <div className="container">
-            <h1>
-                Organize your <br />work and life,finally!!
-            </h1>
-            <p>Become focused,organised and calm with <br />todo app.The world's #1 Task manager app</p>
-            <button className='home-btn'>Make Todo List</button>
-        </div>
-
+    
         <div className="signup-container">
 
         <div className="box">
@@ -68,7 +59,7 @@ const SignUp = () => {
           
        </div> 
             
-        </div>
+
     </>
   )
 }
