@@ -3,11 +3,25 @@ import Navbar from './components/navbar/Navbar'
 import Home from './components/home/Home'
 import Footer from './components/footer/Footer'
 
+import {BrowserRouter,Routes,Route} from  "react-router-dom";
+import SignUp from './components/signup/SignUp';
+
 const App = () => {
   return (
     <>
-    <Navbar/>
-    <Home/>
+    <Navbar/>    
+
+    <BrowserRouter>
+      <Routes>
+
+        <Route  path='/' element={<Home/>} />
+        <Route  path='/signup' element={<SignUp/>} />
+
+
+      </Routes>
+    
+    </BrowserRouter>
+
     <Footer/>
     
     </>
