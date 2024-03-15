@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* margin: auto; */
+    margin: auto;
 }
 
 
@@ -13,12 +13,11 @@
     color: gray;
 }
 
+
 .container{
     margin-left: 80px;
 
 }
-
-
 
 .signup-container{
     margin-right: 30px;
@@ -45,8 +44,6 @@ body{
     border-radius: 3.3rem;
     box-shadow: 0 60px 40px -30px  rgba(0,0,0,0.27);
 }
-
-
 
 .inner-box{
     position: absolute;

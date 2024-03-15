@@ -14,8 +14,14 @@ router.post("/register",async(req,res)=>{
         console.log("postman entry-> ", req.body);
 
         const {name,email,password}= req.body;
-        const hashpassword= bcrypt.hashSync(password);
 
+        //checking whether user already exists
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ message:`User already exists` });
+        }
+
+        const hashpassword= bcrypt.hashSync(password);
         const user=new User(
             {name,email,password:hashpassword}
         );
@@ -25,7 +31,7 @@ router.post("/register",async(req,res)=>{
 
     }
     catch(error){
-        res.status(400).json({message:`User already exists` });
+        res.status(500).json({error: "Internal server error" });
 
     }
 })

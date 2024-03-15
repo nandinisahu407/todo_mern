@@ -1,0 +1,100 @@
+.todo{
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(247, 247, 247);
+    border-radius: 3.3rem;
+    box-shadow: 0 60px 40px -30px  rgba(0,0,0,0.27);
+    margin-top: 50px;
+    position: relative;
+}
+
+.add-task-form{
+    width: 700px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 3.3rem;
+    box-shadow: 0 60px 40px -30px  rgba(0,0,0,0.27);
+    /* margin-left: 20px; */
+    margin-top: 20px;
+    margin-bottom: 70px;
+   
+}
+
+.input-field input[type=text]:focus ,.input-field textarea:focus{
+    box-shadow:0 1px 0 0 #000;
+    border-bottom:1px solid  black;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    outline: none;
+    
+}
+
+.input-field{
+    margin-top: 30px;
+
+}
+
+.input-field input[type=text], .input-field textarea{
+    border: none;
+    height: 25px;
+    border: none;
+  outline: none;
+    font-size: 15px;
+    margin-left: 20px;
+}
+
+.input-field{
+    margin-right: 50px;
+    
+}
+
+.add-btn{
+    margin-top: 30px;
+    width:90px;
+    height: 40px;
+    background-color: black;
+    color: white;
+    font-size: 13px;
+    border-radius: 2rem;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.show-card{
+    margin-bottom: 20px;
+}
+
+.todo-card{
+    border: 1px solid black;
+}
+
+.todo-card-p{
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.card-icons{
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.todo-update{
+    position: absolute;
+    top: 100px;
+    left: 0px;
+    position: fixed;
+    width: 100%;
+    height: 70vh;
+    display: none;
+
+}
+

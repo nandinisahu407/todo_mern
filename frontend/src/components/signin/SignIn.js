@@ -1,16 +1,15 @@
 import React, { useState } from 'react'
-import './SignUp.css';
-import axios from "axios";
+import './SignIn.css'
+import {useNavigate} from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {useNavigate} from "react-router-dom"
+import axios from "axios"
 
-const SignUp = () => {
+const SignIn = () => {
 
-    const history=useNavigate()
+    const history=useNavigate();
 
     const [Inputs,setInputs]=useState({
-        "name":"",
         "email":"",
         "password":""
     })
@@ -24,25 +23,27 @@ const SignUp = () => {
         e.preventDefault();
     
         try {
-            const response = await axios.post("http://localhost:1000/register", Inputs);
+            const response = await axios.post("http://localhost:1000/login", Inputs);
             console.log(response);
     
             if (response.status === 200) {
-                toast.success("New User Added,Sign up Successful !!");
-                console.log("heloooooooooo added user");
-                setInputs({ name: "", email: "", password: "" });
-                history("/signin")
+                toast.success("successfully logged in !!");
+
+                setTimeout(() => {                     //wait fro 3sec then redirect to next page
+                    setInputs({email: "", password: "" });
+                    history("/")
+                }, 1300);
+  
             } 
             
         } 
         
         catch (error) {
-            console.log("Error from frontend:", error);
+            console.log("Error from frontend login:", error);
 
             if(error.response){
-                if(error.response.status===400){           //handling user already exists case
-                    console.log("helllloooooo allready a user");
-                    toast.error("User Already Exists"); 
+                if(error.response.status===400){           //handling user dne+ password incorrect
+                    toast.error(error.response.data.message); 
                 }
                 else {
                     toast.error("An error occurred. Please try again.");
@@ -57,6 +58,8 @@ const SignUp = () => {
     };
 
 
+
+
   return (
     <>
 
@@ -66,11 +69,10 @@ const SignUp = () => {
             <h1>
                 Organize your <br />work and life,finally!!
             </h1>
-            <p>Become focused,organised and calm with <br />todo app.The world's #1 Task manager app</p>
-            
+            <p>Become focused,organised and calm with <br />todo app.The world's #1 Task manager app</p>            
 
         </div>
-    
+
         <div className="signup-container">
 
         <div className="box">
@@ -79,17 +81,8 @@ const SignUp = () => {
 
                 </div>
                     <div className="form-content">
-                        <form action="" className="sign-up" autoComplete='off'>
-                            <h2 className="heading">Sign Up</h2>
-
-                            <div className="row">
-                                <div className="input-field">
-                                <label htmlFor="name">
-                                <i class="zmdi zmdi-account"></i>
-                                </label>
-                                <input type="text" name="name" id="name" autoComplete='off' placeholder='Your Name' required="required"  onChange={change} value={Inputs.username}/>  
-                                 </div>
-                            </div>
+                        <form action="" className="sign-in" autoComplete='off'>
+                            <h2 className="heading">Login</h2>
 
                             <div class="row">
                                 <div class="input-field">
@@ -99,22 +92,22 @@ const SignUp = () => {
                                     <input type="email" id="email" name="email" class="validate" required="required" placeholder="Email ID" onChange={change} value={Inputs.email}/>
 
                                 </div>	
-						    </div>
+                            </div>
 
                             <div class="row">
                                 <div class="input-field">
                                     <label for="pass">
                                     <i class="zmdi zmdi-lock"></i>
                                     </label>
-                                    <input type="password" id="password" name="password" class="validate" required="required" placeholder="Password" onChange={change} value={Inputs.password}/>
+                                    <input type="password" id="pass" name="password" class="validate" required="required" placeholder="Password" onChange={change} value={Inputs.password} />
                                 </div>	
-						    </div>
-
-                            <div className="form-button">
-                                <input type="submit" value="Sign Up" name="signup" id="signup" onClick={submit}/>
                             </div>
 
-                            <p> <a href="/signin">Already have an account? Login</a></p>
+                            <div className="form-button">
+                                <input type="submit" value="Login" name="login" id="login" onClick={submit}/>
+                            </div>
+
+                            <p> <a href="/signup">Create new account? Sign Up</a></p>
                             
                         </form>
 
@@ -122,15 +115,15 @@ const SignUp = () => {
 
                     
                 </div>
-            </div>
+                </div>
 
-          
-       </div> 
-    </div>   
             
+            </div> 
 
+</div>
+    
     </>
   )
 }
 
-export default SignUp
+export default SignIn

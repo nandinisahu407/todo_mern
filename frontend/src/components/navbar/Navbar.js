@@ -9,7 +9,7 @@ const Navbar = () => {
     <>
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
   <div className="container">
-    <a className="navbar-brand" href="#"><b><SiTodoist />&nbsp;todo</b></a>
+    <a className="navbar-brand" href="/"><b><SiTodoist />&nbsp;todo</b></a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
@@ -20,7 +20,7 @@ const Navbar = () => {
         </li>    
 
         <li className="nav-item mx-3">
-          <a className="nav-link active" aria-current="page" href="/">About Us</a>
+          <a className="nav-link active" aria-current="page" href="/todo">To Do</a>
         </li>
 
         <li className="nav-item mx-3">
