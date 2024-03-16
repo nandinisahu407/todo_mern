@@ -62,8 +62,8 @@ router.put("/updateTask/:id",async(req,res)=>{
 router.delete("/deleteTask/:id",async(req,res)=>{
     try {
 
-        const {email}=req.body;
-        const existingUser= await User.findOne({email});
+        const {id}=req.body;
+        const existingUser= await User.findByIdAndUpdate(id);
 
         if(existingUser){
 
@@ -73,7 +73,7 @@ router.delete("/deleteTask/:id",async(req,res)=>{
             }
 
             //deleting from user list
-            await User.findOneAndUpdate({email},{$pull:{list:req.params.id}});
+            await User.findOneAndUpdate({id},{$pull:{list:req.params.id}});
 
             // deleting list
             await List.findByIdAndDelete(req.params.id).then(()=>{

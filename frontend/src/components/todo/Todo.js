@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Todo.css';
 import TodoCard from './TodoCard';
 
@@ -16,6 +16,8 @@ const Todo = () => {
 
     const [Inputs,setInputs]=useState({title: "", body: ""})
     const[Array,setArray]=useState([]);
+
+    
 
     const change=(e)=>{
         const {name,value}=e.target;
@@ -44,7 +46,6 @@ const Todo = () => {
                     console.log("task->",response);
 
                     if(response.status===200){
-                        setArray([...Array,Inputs]);
                         toast.success("Added Task Successfully");
                         console.log("Array is->", Array);
                         setInputs({title: "", body: ""})
@@ -74,11 +75,20 @@ const Todo = () => {
 
     }
 
-    const del=(id)=>{
-        console.log("entered del function in parent",id);
-        Array.splice(id,1);
-        console.log("array is: ",Array);
-        setArray([...Array]);
+    const del=async (Cardid)=>{
+        console.log("entered del function in parent",Cardid);
+
+        const response=await axios.delete(`http://localhost:1000/deleteTask/${Cardid}`,{
+            data: {id:id},
+        });
+        console.log("delete task-> ",response);
+
+
+
+
+        // Array.splice(id,1);
+        // console.log("array is: ",Array);
+        // setArray([...Array]);
 
 
     }
@@ -87,6 +97,17 @@ const Todo = () => {
         console.log("update old task-> ",value)
         document.getElementById("todo-update").style.display=value;
     }
+
+    useEffect(()=>{
+        const fetch=async()=>{
+            const response=await axios.get(`http://localhost:1000/getTasks/${id}`);
+            // console.log("all tasks->",response.data.allTasks);
+            setArray(response.data.allTasks)
+        };
+
+        fetch();
+
+    },[submit])
 
   return (
     <>
@@ -121,7 +142,7 @@ const Todo = () => {
                                             <TodoCard 
                                             title={item.title} 
                                             body={item.body} 
-                                            id={index} 
+                                            id={item._id} 
                                             delid={del}
                                             display={disp_up}                                            
                                             />
