@@ -1,9 +1,20 @@
 import React from 'react'
 import './Navbar.css'
 import { SiTodoist } from "react-icons/si";
+import { useSelector } from 'react-redux';
 
+import { authActions } from '../../store';
+import { useDispatch } from 'react-redux';
 
 const Navbar = () => {
+  const dispatch=useDispatch();
+  const logout=()=>{
+    sessionStorage.clear("id");
+    dispatch(authActions.logout());
+  }
+
+  const isLoggedIn=useSelector(state=> state.isLoggedIn);
+  console.log("isloggedin->",isLoggedIn);
 
   return (
     <>
@@ -23,15 +34,23 @@ const Navbar = () => {
           <a className="nav-link active" aria-current="page" href="/todo">To Do</a>
         </li>
 
-        <li className="nav-item mx-3">
+        {!isLoggedIn && <>
+
+          <li className="nav-item mx-3">
           <a className="nav-link active  btn-nav" aria-current="page" href="/signup">Sign Up</a>
         </li>
         <li className="nav-item mx-3">
           <a className="nav-link active btn-nav" aria-current="page" href="/signin">Sign In</a>
         </li>
+        
+        
+        </>}
 
-        <li className="nav-item mx-3">
-          <a className="nav-link active btn-nav" aria-current="page" href="/logout">Log Out</a>
+        {/* if user is logged in */}
+        {isLoggedIn && <>
+
+          <li className="nav-item mx-3">
+          <a className="nav-link active btn-nav" aria-current="page" href="/" onClick={logout}>Log Out</a>
         </li>
 
         <li className="nav-item">
@@ -39,6 +58,11 @@ const Navbar = () => {
             <img className='user-png' src="./images/user-pic.png" alt="user img" />
             </a>
         </li>
+        
+        
+        
+        </>}
+        
 
 
 

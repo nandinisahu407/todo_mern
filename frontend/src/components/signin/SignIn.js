@@ -5,9 +5,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios"
 
+import { authActions } from '../../store';
+import { useDispatch } from 'react-redux';
+
 const SignIn = () => {
 
     const history=useNavigate();
+    const dispatch=useDispatch();
 
     const [Inputs,setInputs]=useState({
         "email":"",
@@ -28,6 +32,11 @@ const SignIn = () => {
     
             if (response.status === 200) {
                 toast.success("successfully logged in !!");
+
+                console.log("user id-> ",response.data._id);
+                sessionStorage.setItem("id",response.data._id);
+                dispatch(authActions.login());
+
 
                 setTimeout(() => {                     //wait fro 3sec then redirect to next page
                     setInputs({email: "", password: "" });
