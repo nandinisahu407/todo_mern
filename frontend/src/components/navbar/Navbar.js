@@ -6,11 +6,23 @@ import { useSelector } from 'react-redux';
 import { authActions } from '../../store';
 import { useDispatch } from 'react-redux';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 const Navbar = () => {
+
   const dispatch=useDispatch();
   const logout=()=>{
+    toast.success("Logout Successfully !!");
     sessionStorage.clear("id");
     dispatch(authActions.logout());
+
+    setTimeout(()=>{
+      console.log("logout comppleted");
+    },1300)
+
+    
   }
 
   const isLoggedIn=useSelector(state=> state.isLoggedIn);
@@ -20,6 +32,7 @@ const Navbar = () => {
     <>
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
   <div className="container">
+    <ToastContainer/>
     <a className="navbar-brand" href="/"><b><SiTodoist />&nbsp;todo</b></a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>

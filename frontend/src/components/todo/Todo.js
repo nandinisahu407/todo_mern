@@ -6,6 +6,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Update from './Update';
 
+import { authActions } from '../../store';
+import { useDispatch } from 'react-redux';
+import axios from "axios";
+
+let id=sessionStorage.getItem("id");
 
 const Todo = () => {
 
@@ -17,16 +22,52 @@ const Todo = () => {
         setInputs({...Inputs,[name]:value});
     }
 
-    const submit=()=>{
+    const submit=async(e)=>{
+        e.preventDefault();
+
         if(Inputs.title==="" || Inputs.body===""){
             toast.error("Title or Body cannot be empty!!");
         }
 
         else{
-            setArray([...Array,Inputs]);
-            toast("Added Task Successfully");
-            console.log("Array is->", Array);
-            setInputs({title: "", body: ""})
+
+            console.log("hello from add tasks");
+            if(id){   //if user  has signup
+               
+                try {
+                    const response=await axios.post("http://localhost:1000/addTask",{
+                        title:Inputs.title, 
+                        body:Inputs.body,
+                        id:id
+                    });
+
+                    console.log("task->",response);
+
+                    if(response.status===200){
+                        setArray([...Array,Inputs]);
+                        toast.success("Added Task Successfully");
+                        console.log("Array is->", Array);
+                        setInputs({title: "", body: ""})
+                    }
+
+
+                    
+                } catch (error) {
+                    console.log("error from addtodo->",error);
+                    toast.error("An error occured!!");
+                    
+                }
+
+            }
+
+            else{
+                setArray([...Array,Inputs]);
+                toast("Added Task Successfully");
+                toast.error("But tasks are not saved :( kindly sign up");
+                console.log("Array is->", Array);
+                setInputs({title: "", body: ""})
+            }
+            
 
         }
        
