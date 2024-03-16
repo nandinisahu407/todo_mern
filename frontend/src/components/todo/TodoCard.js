@@ -9,8 +9,6 @@ import 'react-toastify/dist/ReactToastify.css';
 const TodoCard = ({title,body,id,delid,display}) => {
 
 
-
-
   return (
     <>
 
@@ -30,7 +28,7 @@ const TodoCard = ({title,body,id,delid,display}) => {
           <div onClick={()=>{
             console.log(id);
             delid(id)
-            toast.success("Deleted Successfully!!");
+            // toast.success("Deleted Successfully!!");
           }}>
           <AiFillDelete  className='card-icons' />Delete
 

@@ -76,19 +76,21 @@ const Todo = () => {
     }
 
     const del=async (Cardid)=>{
-        console.log("entered del function in parent",Cardid);
+        if(id){
+            console.log("entered del function in parent",Cardid);
 
-        const response=await axios.delete(`http://localhost:1000/deleteTask/${Cardid}`,{
-            data: {id:id},
-        });
-        console.log("delete task-> ",response);
+            const response=await axios.delete(`http://localhost:1000/deleteTask/${Cardid}`,{
+                data: {id:id},
+            });
 
+            toast.success("Deleted Successfully!!");
 
+            console.log("delete task-> ",response);
 
-
-        // Array.splice(id,1);
-        // console.log("array is: ",Array);
-        // setArray([...Array]);
+        }
+        else{
+            toast.error("Please SignUp First ")
+        }
 
 
     }
@@ -99,13 +101,16 @@ const Todo = () => {
     }
 
     useEffect(()=>{
-        const fetch=async()=>{
-            const response=await axios.get(`http://localhost:1000/getTasks/${id}`);
-            // console.log("all tasks->",response.data.allTasks);
-            setArray(response.data.allTasks)
-        };
-
-        fetch();
+        if(id){
+            const fetch=async()=>{
+                const response=await axios.get(`http://localhost:1000/getTasks/${id}`);
+                // console.log("all tasks->",response.data.allTasks);
+                setArray(response.data.allTasks)
+            };
+    
+            fetch();
+        }
+        
 
     },[submit])
 
