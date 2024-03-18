@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import axios from "axios";
 
 let id=sessionStorage.getItem("id");
+let toUpdateArray=[];
 
 const Todo = () => {
 
@@ -100,6 +101,14 @@ const Todo = () => {
         document.getElementById("todo-update").style.display=value;
     }
 
+    const update=(value)=>{
+        console.log("inside update function")
+        console.log(Array[value]);
+        // console.log("list id->",Array[value]._id);
+        toUpdateArray=Array[value];
+    }
+
+
     useEffect(()=>{
         if(id){
             const fetch=async()=>{
@@ -149,7 +158,9 @@ const Todo = () => {
                                             body={item.body} 
                                             id={item._id} 
                                             delid={del}
-                                            display={disp_up}                                            
+                                            display={disp_up}   
+                                            updateId={index}    
+                                            toBeUpdate={update}                                     
                                             />
                                         </div>
                                 ))}
@@ -161,7 +172,7 @@ const Todo = () => {
 
     <div className="todo-update" id="todo-update">
         <div className="container update">
-            <Update display={disp_up} />
+            <Update display={disp_up} update={toUpdateArray} />
 
         </div>
     </div>

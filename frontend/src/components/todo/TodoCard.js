@@ -2,12 +2,12 @@ import React from 'react'
 import './Todo.css';
 import { AiFillDelete } from "react-icons/ai";
 import { BiSolidPencil } from "react-icons/bi";
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-const TodoCard = ({title,body,id,delid,display}) => {
-
+const TodoCard = ({title,body,id,delid,display,updateId,toBeUpdate}) => {
 
   return (
     <>
@@ -21,6 +21,8 @@ const TodoCard = ({title,body,id,delid,display}) => {
       <div className="d-flex justify-content-end">
           <div className="mx-3" onClick={()=> {
             display("block");
+            console.log("update id",updateId);
+            toBeUpdate(updateId);
           }}>
           <BiSolidPencil className='card-icons' />Update
 

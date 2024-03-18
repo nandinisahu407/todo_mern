@@ -38,19 +38,27 @@ router.post("/addTask", async(req,res)=>{
 router.put("/updateTask/:id",async(req,res)=>{
     try {
         
-        const {title,body,email}=req.body;
-        const existingUser=await User.findOne({email});
+        // const {title,body,email}=req.body;
+        // const existingUser=await User.findOne({email});
 
-        if(existingUser){
-            const updatedList= await List.findByIdAndUpdate(req.params.id, {title,body});
-            updatedList.save().then(()=>{
-                res.status(200).json({message: `Task Updated: ${updatedList}`});
-            })
+        // if(existingUser){
+        //     const updatedList= await List.findByIdAndUpdate(req.params.id, {title,body});
+        //     updatedList.save().then(()=>{
+        //         res.status(200).json({message: `Task Updated: ${updatedList}`});
+        //     })
 
-        }
-        else{
-            res.status(404).json({message:"User not found"});
-        }
+        // }
+        // else{
+        //     res.status(404).json({message:"User not found"});
+        // }
+
+        const {title,body}=req.body;
+        const updatedList= await List.findByIdAndUpdate(req.params.id, {title,body});
+        updatedList.save().then(()=>{
+                return res.status(200).json({message: `Task Updated: ${updatedList}`});
+        })
+
+
 
     } catch (error) {
         console.log(error);
