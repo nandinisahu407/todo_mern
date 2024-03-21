@@ -24,7 +24,7 @@ const SignUp = () => {
         e.preventDefault();
     
         try {
-            const response = await axios.post("http://localhost:1000/register", Inputs);
+            const response = await axios.post("http://todo-api-weld.vercel.app/register", Inputs);
             console.log(response);
     
             if (response.status === 200) {
