@@ -6,7 +6,13 @@ const cors=require("cors");
 const auth=require("./routes/auth");
 const list=require("./routes/list");
 
-app.use(cors());
+app.use(cors(
+    {
+        origin: ["https://nandini-deploy-todo.vercel.app"],
+        methods:["POST","GET","DELETE","PUT"],
+        credentials:true
+    }
+));
 
 app.get("/",(req,res)=>{
     res.send("Hello from nandini");
