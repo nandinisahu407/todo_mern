@@ -38,7 +38,7 @@ const Todo = () => {
             if(id){   //if user  has signup
                
                 try {
-                    const response=await axios.post("http://todo-api-weld.vercel.app/addTask",{
+                    const response=await axios.post("https://todo-api-weld.vercel.app/addTask",{
                         title:Inputs.title, 
                         body:Inputs.body,
                         id:id
@@ -80,7 +80,7 @@ const Todo = () => {
         if(id){
             console.log("entered del function in parent",Cardid);
 
-            const response=await axios.delete(`http://todo-api-weld.vercel.app/deleteTask/${Cardid}`,{
+            const response=await axios.delete(`https://todo-api-weld.vercel.app/deleteTask/${Cardid}`,{
                 data: {id:id},
             });
 
@@ -112,7 +112,7 @@ const Todo = () => {
     useEffect(()=>{
         if(id){
             const fetch=async()=>{
-                const response=await axios.get(`http://todo-api-weld.vercel.app/getTasks/${id}`);
+                const response=await axios.get(`https://todo-api-weld.vercel.app/getTasks/${id}`);
                 // console.log("all tasks->",response.data.allTasks);
                 setArray(response.data.allTasks)
             };
