@@ -110,16 +110,16 @@ const Todo = () => {
 
 
     useEffect(()=>{
-        if(id){
+        
             const fetch=async()=>{
-                const response=await axios.get(`https://todo-api-weld.vercel.app/getTasks/${id}`);
-                // console.log("all tasks->",response.data.allTasks);
-                setArray(response.data.allTasks)
+                 if(id){
+                    const response=await axios.get(`https://todo-api-weld.vercel.app/getTasks/${id}`);
+                    // console.log("all tasks->",response.data.allTasks);
+                    setArray(response.data.allTasks)
+                }     
             };
     
-            fetch();
-        }
-        
+            fetch();  
 
     },[submit])
 
