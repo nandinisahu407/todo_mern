@@ -8,7 +8,7 @@ const list=require("./routes/list");
 
 app.use(cors(
     {
-        origin: [""],
+        origin: ["https://todo-frontend-woad-rho.vercel.app/"],
         methods:["POST","GET","DELETE","PUT"],
         credentials:true
     }
