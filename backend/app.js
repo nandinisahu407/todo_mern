@@ -8,7 +8,7 @@ const list=require("./routes/list");
 
 app.use(cors(
     {
-        origin: ["https://nandini-deploy-todo.vercel.app"],
+        origin: ["https://nandini-deploy-todo-api.vercel.app"],
         methods:["POST","GET","DELETE","PUT"],
         credentials:true
     }
