@@ -36,7 +36,7 @@ const Update = ({display,update}) => {
       console.log(Inputs);
 
       if(flag){   //kuch change kia h toh hi update ap call
-        const response=await axios.put(`http://localhost:1000/updateTask/${update._id}`,Inputs);
+        const response=await axios.put(`http://todo-api-weld.vercel.app/updateTask/${update._id}`,Inputs);
 
         console.log("update response->",response)
         if(response.status===200){
